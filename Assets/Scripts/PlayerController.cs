@@ -17,12 +17,15 @@ public class PlayerController : MonoBehaviour
     public GameObject interact;
     public GameObject sitPosition;
     GameObject throne;
+    bool moving;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         throne = GameObject.FindGameObjectWithTag("Throne");
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -73,6 +76,18 @@ public class PlayerController : MonoBehaviour
             transform.position = sitPosition.transform.position;
             transform.rotation = sitPosition.transform.rotation;
         }
+        else
+        {
+            if(moveHorizontal == 0  && moveVertical == 0)
+            {
+                animator.SetBool("Walk", false);
+
+            }
+            else
+            {
+                animator.SetBool("Walk",true);
+            }
+        }
 
     }
 
@@ -84,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     void Push()
     {
-
+        interact.GetComponent<Interact>().playerContact.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(interact.GetComponent<Interact>().playerContact.transform.position - transform.position) * pushForce);
     }
 
 }

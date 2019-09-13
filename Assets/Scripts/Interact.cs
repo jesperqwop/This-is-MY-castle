@@ -41,7 +41,7 @@ public class Interact : MonoBehaviour
         }
         if (other.tag == "Player")
         {
-            player = true;
+            player = false;
             playerContact = null;
         }
     }
