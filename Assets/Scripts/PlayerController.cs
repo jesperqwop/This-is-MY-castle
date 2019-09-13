@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = sitPosition.transform.position;
             transform.rotation = sitPosition.transform.rotation;
+            animator.SetBool("Walk", false);
+            animator.SetBool("Sit", true);
+
         }
         else
         {
