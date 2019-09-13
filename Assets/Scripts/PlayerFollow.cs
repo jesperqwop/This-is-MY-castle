@@ -21,7 +21,6 @@ public class PlayerFollow : MonoBehaviour {
 
 	void Start(){
 		cam = GetComponent<Camera> ();
-		smoothTime = 1;
 	}
 
 	// Follow Two Transforms with a Fixed-Orientation Camera
