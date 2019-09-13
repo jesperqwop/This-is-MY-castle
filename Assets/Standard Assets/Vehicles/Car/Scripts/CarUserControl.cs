@@ -4,7 +4,8 @@ using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-    [RequireComponent(typeof (CarController))]
+
+    [RequireComponent(typeof(CarController))]
     public class CarUserControl : MonoBehaviour
     {
 
@@ -22,26 +23,25 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void FixedUpdate()
         {
+
             if (player == 1)
-            {
+            {            // pass the input to the car!
                 float h = CrossPlatformInputManager.GetAxis("Horizontal");
                 float v = CrossPlatformInputManager.GetAxis("Vertical");
+
                 float handbrake = CrossPlatformInputManager.GetAxis("Jump");
                 m_Car.Move(h, v, v, handbrake);
+                m_Car.Move(h, v, v, 0f);
             }
-
             if (player == 2)
-            {
-                float h = CrossPlatformInputManager.GetAxis("Horizontal2");
-                float v = CrossPlatformInputManager.GetAxis("Vertical2");
-                float handbrake = CrossPlatformInputManager.GetAxis("Jump2");
-                m_Car.Move(h, v, v, handbrake);
-            }
+            {            // pass the input to the car!
+                float h = CrossPlatformInputManager.GetAxis("Horizontal");
+                float v = CrossPlatformInputManager.GetAxis("Vertical");
 
-#if !MOBILE_INPUT
-#else
-            m_Car.Move(h, v, v, 0f);
-#endif
+                float handbrake = CrossPlatformInputManager.GetAxis("Jump");
+                m_Car.Move(h, v, v, handbrake);
+                m_Car.Move(h, v, v, 0f);
+            }
         }
     }
 }
