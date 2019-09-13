@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    public int p1Points;
-    public int p2Points;
+    public float p1Points;
+    public float p2Points;
 
     public Text p1Text;
     public Text p2Text;
@@ -23,8 +23,8 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        p1Text.text = "Points: " + p1Points.ToString();
-        p2Text.text = "Points: " + p2Points.ToString();
+        p1Text.text = "Points: " + Mathf.Round(p1Points).ToString();
+        p2Text.text = "Points: " + Mathf.Round(p2Points).ToString();
 
     }
 
@@ -32,11 +32,11 @@ public class Manager : MonoBehaviour
     {
         if(throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().player == 1)
         {
-            p1Points += 1;
+            p1Points += 0.01f;
         }
         if (throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().player == 2)
         {
-            p2Points += 1;
+            p2Points += 0.01f;
         }
     }
 
