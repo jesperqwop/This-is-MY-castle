@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer.GetComponent<PlayerController>().onThrone = false;
             throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer.GetComponent<PlayerController>().onThrone = false;
+            throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer.GetComponent<Rigidbody>().AddForce(new Vector3(0,1500,0));
 
         }
         throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer = gameObject;
