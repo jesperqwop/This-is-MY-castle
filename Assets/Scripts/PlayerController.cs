@@ -31,8 +31,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveHorizontal = Input.GetAxis("Horizontal");
-        moveVertical = Input.GetAxis("Vertical");
+        if(playerNR == 1)
+        {
+            moveHorizontal = Input.GetAxis("Horizontal");
+            moveVertical = Input.GetAxis("Vertical");
+        }
+        if (playerNR == 2)
+        {
+            moveHorizontal = Input.GetAxis("Horizontal2");
+            moveVertical = Input.GetAxis("Vertical2");
+        }
 
         movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         if (canMove == true)
@@ -57,18 +65,40 @@ public class PlayerController : MonoBehaviour
 
         if(interact.GetComponent<Interact>().chair == true)
         {
-            if (Input.GetButtonDown("Submit"))
+            if(playerNR == 1)
             {
-                Sit();
+                if (Input.GetButtonDown("Submit"))
+                {
+                    Sit();
+                }
             }
+            if (playerNR == 2)
+            {
+                if (Input.GetButtonDown("Submit2"))
+                {
+                    Sit();
+                }
+            }
+
         }
 
         if (interact.GetComponent<Interact>().player == true)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if(playerNR == 1)
             {
-                Push();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Push();
+                }
             }
+            if (playerNR == 2)
+            {
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    Push();
+                }
+            }
+
         }
 
         if (onThrone == true)
@@ -84,11 +114,14 @@ public class PlayerController : MonoBehaviour
             if(moveHorizontal == 0  && moveVertical == 0)
             {
                 animator.SetBool("Walk", false);
+                animator.SetBool("Sit", false);
 
             }
             else
             {
                 animator.SetBool("Walk",true);
+                animator.SetBool("Sit", false);
+
             }
         }
 
@@ -98,6 +131,13 @@ public class PlayerController : MonoBehaviour
     {
         onThrone = true;
         throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().player = playerNR;
+        if (throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer != null)
+        {
+            throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer.GetComponent<PlayerController>().onThrone = false;
+            throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer.GetComponent<PlayerController>().onThrone = false;
+
+        }
+        throne.GetComponent<UnityStandardAssets.Vehicles.Car.CarUserControl>().sittingPlayer = gameObject;
     }
 
     void Push()

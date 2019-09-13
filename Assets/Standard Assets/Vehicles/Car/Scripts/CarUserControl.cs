@@ -10,6 +10,7 @@ namespace UnityStandardAssets.Vehicles.Car
     {
 
         public float player;
+        public GameObject sittingPlayer;
 
         private CarController m_Car; // the car controller we want to use
 
@@ -35,8 +36,8 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             if (player == 2)
             {            // pass the input to the car!
-                float h = CrossPlatformInputManager.GetAxis("Horizontal");
-                float v = CrossPlatformInputManager.GetAxis("Vertical");
+                float h = CrossPlatformInputManager.GetAxis("Horizontal2");
+                float v = CrossPlatformInputManager.GetAxis("Vertical2");
 
                 float handbrake = CrossPlatformInputManager.GetAxis("Jump");
                 m_Car.Move(h, v, v, handbrake);
